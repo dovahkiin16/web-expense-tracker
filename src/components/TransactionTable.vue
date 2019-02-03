@@ -7,13 +7,9 @@
       v-data-table(
         :headers="headers"
         :items="transactions"
-        dark
-      )
+        dark)
         template(slot="items" slot-scope="props")
-          td {{ props.item.date }}
-          td {{ props.item.amount }}
-          td {{ props.item.category }}
-          td {{ props.item.type }}
+          td(v-for="header in headers") {{ props.item[header.value] }}
 </template>
 
 <script>
