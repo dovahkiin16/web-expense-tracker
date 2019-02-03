@@ -1,4 +1,16 @@
-# expense-tracker
+# web-expense-tracker
+
+## Config setup
+fill up this config file and put to `src/config/index.js`
+```js
+export const config = {
+  apiKey: "",
+  authDomain: "",
+  databaseURL: "",
+  storageBucket: "",
+  projectId: ""
+};
+```
 
 ## Project setup
 ```
