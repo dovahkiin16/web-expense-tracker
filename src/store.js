@@ -15,14 +15,18 @@ export default new Vuex.Store({
     transactions: state => state.transactions,
   },
   mutations: {
-    addTransactions: (context, data)=> {
+    addTransactions: (context, data) => {
       context.transactions.push(data);
+    },
+    clearTransactions: context => {
+      context.transactions = [];
     }
   },
   actions: {
     watchTransactions: async context => {
       db.collection('user').doc(context.getters.userId).collection('transactions')
         .onSnapshot(col => {
+          context.commit('clearTransactions');
           if (!col.empty) {
             col.forEach(snap => {
               const transaction = snap.data();
