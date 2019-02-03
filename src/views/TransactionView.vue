@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import TransactionTable from "../components/TransactionTable";
+import TransactionTable from "../components/Transaction/TransactionTable";
 import { mapActions } from 'vuex';
 
 export default {
