@@ -11,7 +11,7 @@
     v-divider
     v-card-actions
       v-spacer
-      v-btn.primary Add
+      v-btn.primary(@click="add") Add
 </template>
 
 <script>
@@ -24,6 +24,11 @@ export default {
         category: '',
         type: ''
       }
+    }
+  },
+  methods: {
+    add: function () {
+      this.$emit('add');
     }
   }
 }
