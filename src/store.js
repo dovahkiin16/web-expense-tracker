@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import { db } from "./main";
+import { formatDate } from "./utils";
 
 Vue.use(Vuex);
 
@@ -25,7 +26,7 @@ export default new Vuex.Store({
           if (!col.empty) {
             col.forEach(snap => {
               const transaction = snap.data();
-              transaction.date = snap.get('date').toDate();
+              transaction.date = formatDate(snap.get('date').toDate());
               context.commit('addTransactions', transaction);
             });
           }
