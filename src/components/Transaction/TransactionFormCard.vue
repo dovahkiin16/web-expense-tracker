@@ -3,9 +3,9 @@
     v-card-title Add new Transaction
     v-divider
     v-card-text
-      v-text-field(label="Amount" v-model="form.amount")
-      v-text-field(label="Category" v-model="form.category")
-      v-radio-group(row v-model="form.type")
+      v-text-field(label="Amount" v-model="amount")
+      v-text-field(label="Category" v-model="category")
+      v-radio-group(row v-model="type")
         v-radio(label="Credit" value="credit")
         v-radio(label="Debit" value="debit")
     v-divider
@@ -15,6 +15,8 @@
 </template>
 
 <script>
+import { mapGetters, mapMutations } from 'vuex';
+
 export default {
   name: "TransactionFormCard",
   data: function () {
@@ -27,8 +29,36 @@ export default {
     }
   },
   methods: {
+    ...mapMutations(['setTransactionFormField']),
     add: function () {
       this.$emit('add');
+    }
+  },
+  computed: {
+    ...mapGetters(['transactionForm']),
+    amount: {
+      get: function () {
+        return this.transactionForm.amount;
+      },
+      set: function (value) {
+        this.setTransactionFormField({field: 'amount', value: value});
+      }
+    },
+    category: {
+      get: function () {
+        return this.transactionForm.category;
+      },
+      set: function (value) {
+        this.setTransactionFormField({field: 'category', value: value});
+      }
+    },
+    type: {
+      get: function () {
+        return this.transactionForm.type;
+      },
+      set: function (value) {
+        this.setTransactionFormField({field: 'type', value: value});
+      }
     }
   }
 }

@@ -13,6 +13,9 @@ export default {
   methods: {
     close: function () {
       this.$emit('close');
+    },
+    save: function () {
+
     }
   }
 }

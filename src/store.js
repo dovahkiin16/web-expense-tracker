@@ -8,11 +8,17 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     userId: 'XoCGXth3HbQstbK6JNaZ',
-    transactions: []
+    transactions: [],
+    transactionForm: {
+      amount: 0,
+      category: '',
+      type: ''
+    }
   },
   getters: {
     userId: state =>  state.userId,
     transactions: state => state.transactions,
+    transactionForm: state => state.transactionForm
   },
   mutations: {
     addTransactions: (context, data) => {
@@ -20,6 +26,9 @@ export default new Vuex.Store({
     },
     clearTransactions: context => {
       context.transactions = [];
+    },
+    setTransactionFormField: (context, detail) => {
+      context.transactionForm[detail.field] = detail.value;
     }
   },
   actions: {
@@ -35,14 +44,14 @@ export default new Vuex.Store({
             });
           }
         });
+    },
+    stopWatchingTransactions: async context => {
+      const unsub = db.collection('user')
+        .doc(context.getters.userId)
+        .collection('transactions')
+        .onSnapshot(() => {
+        });
+      unsub();
     }
   },
-  stopWatchingTransactions: async context => {
-    const unsub = db.collection('user')
-      .doc(context.getters.userId)
-      .collection('transactions')
-      .onSnapshot(() => {
-      });
-    unsub();
-  }
 });
