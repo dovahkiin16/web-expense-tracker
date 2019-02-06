@@ -19,15 +19,6 @@ import { mapGetters, mapMutations } from 'vuex';
 
 export default {
   name: "TransactionFormCard",
-  data: function () {
-    return {
-      form: {
-        amount: 0,
-        category: '',
-        type: ''
-      }
-    }
-  },
   methods: {
     ...mapMutations(['setTransactionFormField']),
     add: function () {

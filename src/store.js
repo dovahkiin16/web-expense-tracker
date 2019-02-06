@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import { db } from "./main";
 import { formatDate } from "./utils";
+import firebase from 'firebase/app';
 
 Vue.use(Vuex);
 
@@ -52,6 +53,15 @@ export default new Vuex.Store({
         .onSnapshot(() => {
         });
       unsub();
+    },
+    addTransaction: async (context) => {
+      try {
+        const transaction = context.getters.transactionForm;
+        transaction.date = firebase.firestore.Timestamp.fromDate(new Date());
+        await db.collection('user').doc(context.getters.userId).collection('transactions').add(transaction);
+      } catch (e) {
+        console.log(e.message);
+      }
     }
   },
 });
