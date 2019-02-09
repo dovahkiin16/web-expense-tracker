@@ -1,10 +1,11 @@
 import store from '../store';
+import { routeNames } from "./routeNames";
 
 export const requireAuth =  (to, from, next) => {
   if (store.getters.userId) {
     next();
   } else {
-    next({name: 'login'});
+    next(routeNames.login);
   }
 };
 
@@ -12,6 +13,6 @@ export const requireNoUser = (to, from, next) => {
   if (!store.getters.userId) {
     next();
   } else {
-    next({name: 'transactions'});
+    next(routeNames.transactions);
   }
 };
