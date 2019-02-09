@@ -1,4 +1,4 @@
-# web-expense-tracker
+# Web-based Expense Tracker
 
 ## Config setup
 fill up this config file and put to `src/config/index.js`
@@ -12,30 +12,9 @@ export const config = {
 };
 ```
 
-## Project setup
-```
-npm install
-```
+#### Issues, Feature requests, and Questions 
+If you found a bug, have a feature request or a question, feel free to open an issue.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+#### Contributing
+Please feel free to contribute by submitting a PR.
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
