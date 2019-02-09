@@ -8,7 +8,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    userId: 'XoCGXth3HbQstbK6JNaZ',
+    userId: '',
     transactions: [],
     transactionForm: {
       amount: 0,
@@ -27,6 +27,9 @@ export default new Vuex.Store({
     },
     clearTransactions: context => {
       context.transactions = [];
+    },
+    setUserId: (context, userId) => {
+      context.userId = userId;
     },
     setTransactionFormField: (context, detail) => {
       context.transactionForm[detail.field] = detail.value;

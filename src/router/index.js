@@ -7,8 +7,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'landing',
-      redirect: { name: 'transactions' }
+      name: 'login',
+      component: () => import(/* webpackChunkName: "login" */ '../views/LoginView')
     },
     {
       path: '/transactions',
