@@ -13,7 +13,7 @@ export default new Router({
     {
       path: '/transactions',
       name: 'transactions',
-      component: () => import(/* webpackChunkName: "transactions" */ './views/TransactionView')
+      component: () => import(/* webpackChunkName: "transactions" */ '../views/TransactionView')
     }
   ]
 })
