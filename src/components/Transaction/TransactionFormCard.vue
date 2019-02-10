@@ -3,11 +3,12 @@
     v-card-title Add new Transaction
     v-divider
     v-card-text
-      v-text-field(label="Amount" v-model="amount")
-      v-text-field(label="Category" v-model="category")
-      v-radio-group(row v-model="type")
-        v-radio(label="Credit" value="credit")
-        v-radio(label="Debit" value="debit")
+      v-form(ref="form" lazy-validation)
+        v-text-field(label="Amount" :rules="[required]" type="number" v-model="amount")
+        v-text-field(label="Category" :rules="[required]" v-model="category")
+        v-radio-group(row v-model="type" :rules="[required]")
+          v-radio(label="Credit" value="credit")
+          v-radio(label="Debit" value="debit")
     v-divider
     v-card-actions
       v-spacer
@@ -16,13 +17,17 @@
 
 <script>
 import { mapGetters, mapMutations } from 'vuex';
+import { fieldRequired } from "../commons/utils/formRules";
 
 export default {
   name: "TransactionFormCard",
   methods: {
     ...mapMutations(['setTransactionFormField']),
+    required: fieldRequired,
     add: function () {
-      this.$emit('add');
+      if (this.$refs.form.validate()) {
+        this.$emit('add');
+      }
     }
   },
   computed: {
