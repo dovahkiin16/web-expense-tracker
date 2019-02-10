@@ -37,7 +37,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['transactions']),
+    ...mapGetters('transaction', ['transactions']),
   }
 }
 </script>

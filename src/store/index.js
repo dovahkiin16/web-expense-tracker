@@ -1,70 +1,13 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { db } from "../main";
-import { formatDate } from "../utils/index";
-import firebase from 'firebase/app';
+import transactionModule from './transactions';
+import accountModule from './account';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {
-    userId: '',
-    transactions: [],
-    transactionForm: {
-      amount: 0,
-      category: '',
-      type: ''
-    }
-  },
-  getters: {
-    userId: state =>  state.userId,
-    transactions: state => state.transactions,
-    transactionForm: state => state.transactionForm
-  },
-  mutations: {
-    addTransactions: (context, data) => {
-      context.transactions.push(data);
-    },
-    clearTransactions: context => {
-      context.transactions = [];
-    },
-    setUserId: (context, userId) => {
-      context.userId = userId;
-    },
-    setTransactionFormField: (context, detail) => {
-      context.transactionForm[detail.field] = detail.value;
-    }
-  },
-  actions: {
-    watchTransactions: async context => {
-      db.collection('user').doc(context.getters.userId).collection('transactions')
-        .onSnapshot(col => {
-          context.commit('clearTransactions');
-          if (!col.empty) {
-            col.forEach(snap => {
-              const transaction = snap.data();
-              transaction.date = formatDate(snap.get('date').toDate());
-              context.commit('addTransactions', transaction);
-            });
-          }
-        });
-    },
-    stopWatchingTransactions: async context => {
-      const unsub = db.collection('user')
-        .doc(context.getters.userId)
-        .collection('transactions')
-        .onSnapshot(() => {
-        });
-      unsub();
-    },
-    addTransaction: async (context) => {
-      try {
-        const transaction = context.getters.transactionForm;
-        transaction.date = firebase.firestore.Timestamp.fromDate(new Date());
-        await db.collection('user').doc(context.getters.userId).collection('transactions').add(transaction);
-      } catch (e) {
-        console.log(e.message);
-      }
-    }
+  modules: {
+    transaction: transactionModule,
+    account: accountModule,
   },
 });

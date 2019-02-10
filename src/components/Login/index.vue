@@ -19,7 +19,7 @@ export default {
   created: async function () {
   },
   methods: {
-    ...mapMutations(['setUserId']),
+    ...mapMutations('account', ['setUserId']),
     loginPopup: async function () {
       const provider = new firebase.auth.GoogleAuthProvider();
       try {

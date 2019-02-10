@@ -22,7 +22,7 @@ import { fieldRequired } from "../commons/utils/formRules";
 export default {
   name: "TransactionFormCard",
   methods: {
-    ...mapMutations(['setTransactionFormField']),
+    ...mapMutations('transaction', ['setTransactionFormField']),
     required: fieldRequired,
     add: function () {
       if (this.$refs.form.validate()) {
@@ -31,7 +31,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['transactionForm']),
+    ...mapGetters('transaction', ['transactionForm']),
     amount: {
       get: function () {
         return this.transactionForm.amount;

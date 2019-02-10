@@ -29,7 +29,7 @@ export default {
     this.stopWatchingTransactions();
   },
   methods: {
-    ...mapActions(['watchTransactions', 'stopWatchingTransactions']),
+    ...mapActions('transaction', ['watchTransactions', 'stopWatchingTransactions']),
     openDialog: function () {
       this.isDialogOpen = true;
     },

@@ -12,7 +12,7 @@ export default {
   props: ['open'],
   components: { TransactionFormCard },
   methods: {
-    ...mapActions(['addTransaction']),
+    ...mapActions('transaction', ['addTransaction']),
     close: function () {
       this.$emit('close');
     },
