@@ -9,7 +9,9 @@
         :items="transactions"
         dark)
         template(slot="items" slot-scope="props")
-          td(v-for="header in headers") {{ props.item[header.value] }}
+          td {{ props.item.date }}
+          td(:class="getTypeColor(props.item.type)") {{ getTypeSign(props.item.type) }} {{ props.item.amount }}
+          td {{ props.item.category }}
 </template>
 
 <script>
@@ -23,12 +25,19 @@ export default {
         { text: 'Date', value: 'date' },
         { text: 'Amount', value: 'amount'},
         { text: 'Category', value: 'category'},
-        { text: 'Type', value: 'type'}
       ]
     }
   },
+  methods: {
+    getTypeColor: function (type) {
+      return type === 'credit' ? 'red--text text--lighten-1' : 'light-green--text text--lighten-3';
+    },
+    getTypeSign: function (type) {
+      return type === 'credit' ? '-' : '+';
+    }
+  },
   computed: {
-    ...mapGetters(['transactions'])
+    ...mapGetters(['transactions']),
   }
 }
 </script>
