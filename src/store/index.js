@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { db } from "./main";
-import { formatDate } from "./utils";
+import { db } from "../main";
+import { formatDate } from "../utils/index";
 import firebase from 'firebase/app';
 
 Vue.use(Vuex);

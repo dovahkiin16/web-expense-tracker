@@ -1,4 +1,4 @@
-import store from '../store';
+import store from '../store/index';
 import { routeNames } from "./routeNames";
 
 export const requireAuth =  (to, from, next) => {
