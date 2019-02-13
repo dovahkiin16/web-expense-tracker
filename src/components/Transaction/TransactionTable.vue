@@ -8,7 +8,7 @@
         :headers="headers"
         :items="transactions"
         dark)
-        template(slot="items" slot-scope="props")
+        template(#items="props")
           td {{ props.item.date }}
           td(:class="getTypeColor(props.item.type)") {{ getTypeSign(props.item.type) }} {{ props.item.amount }}
           td {{ props.item.category }}
