@@ -1,8 +1,8 @@
 <template lang="pug">
   div
-    v-container
+    v-container(fluid :class="{'pa-0': isDeviceSmall}")
       v-layout
-        v-flex
+        v-flex(sm8 offset-sm2 md6 offset-md3 lg4 offset-lg4)
           TransactionTable
     v-btn(fab dark fixed bottom right color="primary" @click="openDialog")
       v-icon add
@@ -35,6 +35,11 @@ export default {
     },
     closeDialog: function () {
       this.isDialogOpen = false;
+    }
+  },
+  computed: {
+    isDeviceSmall: function () {
+      return this.$vuetify.breakpoint.xsOnly;
     }
   }
 }

@@ -19,12 +19,13 @@ const getters = {
 const actions = {
   watchTransactions: async context => {
     console.log(context.rootGetters['account/userId']);
-    db.collection('user').doc(context.rootGetters['account/userId']).collection('transactions')
+    db.collection('user').doc(context.rootGetters['account/userId']).collection('transactions').orderBy('date', 'desc')
       .onSnapshot(col => {
         context.commit('clearTransactions');
         if (!col.empty) {
           col.forEach(snap => {
             const transaction = snap.data();
+            console.log(transaction);
             transaction.date = formatDate(snap.get('date').toDate());
             context.commit('addTransactions', transaction);
           });

@@ -1,17 +1,16 @@
 <template lang="pug">
   v-card(dark)
-    v-card-title
-      h3 Transaction list
-    v-divider
-    v-card-text
-      v-data-table(
-        :headers="headers"
-        :items="transactions"
-        dark)
-        template(#items="props")
-          td {{ props.item.date }}
-          td(:class="getTypeColor(props.item.type)") {{ getTypeSign(props.item.type) }} {{ props.item.amount }}
-          td {{ props.item.category }}
+    v-card-text(class="pa-0")
+      v-list(dark two-lines)
+        v-subheader Transactions
+        template(v-for="(item, index) in transactions")
+          v-list-tile(:key="index" avatar ripple)
+            v-list-tile-content
+              v-list-tile-title(:class="getTypeColor(item.type)") {{ getTypeSign(item.type) }}{{ item.amount }}
+              v-list-tile-sub-title(class="text-primary") {{ item.category }}
+            v-list-tile-action
+              v-list-tile-action-text {{ item.date }}
+          v-divider(v-if="index + 1 < transactions.length")
 </template>
 
 <script>
