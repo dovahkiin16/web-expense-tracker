@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import TransactionTable from "../components/Transaction/TransactionTable";
+import TransactionTable from "../components/Transaction/TransactionList";
 import { mapActions } from 'vuex';
 import TransactionFormDialog from "../components/Transaction/TransactionFormDialog";
 
