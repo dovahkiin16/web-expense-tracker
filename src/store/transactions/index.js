@@ -18,14 +18,12 @@ const getters = {
 
 const actions = {
   watchTransactions: async context => {
-    console.log(context.rootGetters['account/userId']);
     db.collection('user').doc(context.rootGetters['account/userId']).collection('transactions').orderBy('date', 'desc')
       .onSnapshot(col => {
         context.commit('clearTransactions');
         if (!col.empty) {
           col.forEach(snap => {
             const transaction = snap.data();
-            console.log(transaction);
             transaction.date = formatDate(snap.get('date').toDate());
             context.commit('addTransactions', transaction);
           });
@@ -41,13 +39,9 @@ const actions = {
     unsub();
   },
   addTransaction: async (context) => {
-    try {
-      const transaction = context.getters['transactionForm'];
-      transaction.date = firebase.firestore.Timestamp.fromDate(new Date());
-      await db.collection('user').doc(context.rootGetters['account/userId']).collection('transactions').add(transaction);
-    } catch (e) {
-      console.log(e.message);
-    }
+    const transaction = context.getters['transactionForm'];
+    transaction.date = firebase.firestore.Timestamp.fromDate(new Date());
+    await db.collection('user').doc(context.rootGetters['account/userId']).collection('transactions').add(transaction);
   },
 };
 

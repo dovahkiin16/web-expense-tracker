@@ -22,13 +22,9 @@ export default {
     ...mapMutations('account', ['setUserId']),
     loginPopup: async function () {
       const provider = new firebase.auth.GoogleAuthProvider();
-      try {
-        const result = await firebase.auth().signInWithPopup(provider);
-        this.setUserId(result.user.uid);
-        this.$router.push({name: 'transactions'});
-      } catch (e) {
-        console.log(e);
-      }
+      const result = await firebase.auth().signInWithPopup(provider);
+      this.setUserId(result.user.uid);
+      this.$router.push({ name: 'transactions' });
     }
   }
 }
