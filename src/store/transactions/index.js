@@ -14,6 +14,14 @@ const defaultState = {
 const getters = {
   transactions: state => state.transactions,
   transactionForm: state => state.transactionForm,
+  balance: state => {
+    return state.transactions.reduce((acc, val) => {
+      if (val.type === 'credit') {
+        return acc - val.amount;
+      }
+      return acc + parseInt(val.amount);
+    }, 0);
+  }
 };
 
 const actions = {

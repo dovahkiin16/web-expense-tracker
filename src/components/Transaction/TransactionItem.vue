@@ -13,10 +13,10 @@ export default {
   props: ['item'],
   methods: {
     getTypeColor: function (type) {
-      return type === 'debit' ? 'red--text text--lighten-1' : 'light-green--text text--lighten-3';
+      return type === 'credit' ? 'red--text text--lighten-1' : 'light-green--text text--lighten-3';
     },
     getTypeSign: function (type) {
-      return type === 'debit' ? '-' : '+';
+      return type === 'credit' ? '-' : '+';
     }
   },
 }
