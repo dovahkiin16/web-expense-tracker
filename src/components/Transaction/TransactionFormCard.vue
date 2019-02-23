@@ -5,7 +5,7 @@
     v-card-text
       v-form(ref="form" lazy-validation)
         v-text-field(label="Amount" :rules="[required]" type="number" v-model="amount")
-        v-text-field(label="Category" :rules="[required]" v-model="category")
+        v-select(:items="categories" label="Category" :rules="[required]" v-model="category")
         v-radio-group(row v-model="type" :rules="[required]")
           v-radio(label="Credit" value="credit")
           v-radio(label="Debit" value="debit")
@@ -18,15 +18,22 @@
 <script>
 import { mapGetters, mapMutations } from 'vuex';
 import { fieldRequired } from "../commons/utils/formRules";
+import { categories_array } from "../../config/constants";
 
 export default {
   name: "TransactionFormCard",
+  data: function () {
+    return {
+      categories: categories_array,
+    }
+  },
   methods: {
     ...mapMutations('transaction', ['setTransactionFormField']),
     required: fieldRequired,
     add: function () {
       if (this.$refs.form.validate()) {
         this.$emit('add');
+        this.$refs.form.reset();
       }
     }
   },
