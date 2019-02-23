@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "firebase": "^5.8.2",
+    "moment-mini": "^2.22.1",
     "vue": "^2.6.6",
     "vue-router": "^3.0.1",
     "vuetify": "^1.5.1",

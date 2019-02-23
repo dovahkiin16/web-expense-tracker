@@ -1,9 +1,5 @@
+import moment from 'moment-mini';
+
 export const formatDate = (date) => {
-  const options = {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  };
-  return date.toLocaleDateString('en-PH', options);
+  return moment(date).format('MMMM DD, YYYY - h:mm a');
 };
