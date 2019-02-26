@@ -1,7 +1,7 @@
 <template lang="pug">
   v-app(dark)
     v-toolbar(app color="primary" dark)
-      v-toolbar-side-icon(@click="toggle" v-if="loggedin")
+      v-toolbar-side-icon(@click="toggle" v-if="loggedIn")
       v-toolbar-title(class="headline text-uppercase")
         span Expense
         span(class="font-weight-light") Tracker
@@ -30,7 +30,7 @@ export default {
   computed: {
     ...mapGetters('navDrawer', ['isOpen']),
     ...mapGetters('account', ['userId']),
-    loggedin: function () {
+    loggedIn: function () {
       return this.userId !== '';
     }
   }
