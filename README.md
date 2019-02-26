@@ -12,9 +12,11 @@ export const config = {
 };
 ```
 
+#### Current plans for the future 
+[Coggle mind map link](https://coggle.it/diagram/XHWD9H9tHcAC-yNK/t/-)
+
 #### Issues, Feature requests, and Questions 
 If you found a bug, have a feature request or a question, feel free to open an issue.
 
 #### Contributing
 Please feel free to contribute by submitting a PR.
-
