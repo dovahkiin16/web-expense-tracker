@@ -5,10 +5,13 @@
     v-card-text
       v-form(ref="form" lazy-validation)
         v-text-field(label="Amount" :rules="[required]" type="number" v-model="amount")
-        v-select(:items="categories" label="Category" :rules="[required]" v-model="category")
-        v-radio-group(row v-model="type" :rules="[required]")
-          v-radio(label="Credit" value="credit")
-          v-radio(label="Debit" value="debit")
+        v-select(:items="categories"
+            item-value="name"
+            :item-text="getItemText"
+            label="Category"
+            @input="setType"
+            :rules="[required]"
+            v-model="category")
     v-divider
     v-card-actions
       v-spacer
@@ -18,7 +21,7 @@
 <script>
 import { mapGetters, mapMutations } from 'vuex';
 import { fieldRequired } from "../commons/utils/formRules";
-import { categories_array } from "../../config/constants";
+import { categories_array, categories } from "../../config/constants";
 
 export default {
   name: "TransactionFormCard",
@@ -35,6 +38,18 @@ export default {
         this.$emit('add');
         this.$refs.form.reset();
       }
+    },
+    getItemText: function (value) {
+      return `${value.name} (${value.type})`
+    },
+    setType: function (category) {
+      if (category === '' || category === undefined) {
+        this.setTransactionFormField({field: 'type', value: ''});
+        return;
+      }
+      const categ_upper = category.toUpperCase();
+      const value = categories[categ_upper].type;
+      this.setTransactionFormField({field: 'type', value: value});
     }
   },
   computed: {
@@ -51,18 +66,10 @@ export default {
       get: function () {
         return this.transactionForm.category;
       },
-      set: function (value) {
-        this.setTransactionFormField({field: 'category', value: value});
+      set: function (category) {
+        this.setTransactionFormField({field: 'category', value: category});
       }
     },
-    type: {
-      get: function () {
-        return this.transactionForm.type;
-      },
-      set: function (value) {
-        this.setTransactionFormField({field: 'type', value: value});
-      }
-    }
   }
 }
 </script>
