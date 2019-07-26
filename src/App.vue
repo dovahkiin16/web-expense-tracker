@@ -5,6 +5,9 @@
       v-toolbar-title(class="headline text-uppercase")
         span Expense
         span(class="font-weight-light") Tracker
+      v-spacer
+      v-btn(text icon)
+        v-icon logout
     NavDrawer
     v-content
       router-view
