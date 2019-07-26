@@ -1,10 +1,10 @@
 <template lang="pug">
-  v-list-tile(avatar ripple)
-    v-list-tile-content
-      v-list-tile-title(:class="getTypeColor(item.type)") {{ getTypeSign(item.type) }}{{ item.amount }}
-      v-list-tile-sub-title(class="text-primary") {{ item.category }}
-    v-list-tile-action
-      v-list-tile-action-text {{ item.date }}
+  v-list-item(ripple)
+    v-list-item-content
+      v-list-item-title(:class="getTypeColor(item.type)") {{ getTypeSign(item.type) }}{{ item.amount }}
+      v-list-item-subtitle(class="text-primary") {{ item.category }}
+    v-list-item-action
+      v-list-item-action-text {{ item.date }}
 </template>
 
 <script>

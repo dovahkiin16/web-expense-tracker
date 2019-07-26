@@ -1,10 +1,13 @@
 <template lang="pug">
-  v-app(dark)
-    v-toolbar(app color="primary" dark)
-      v-toolbar-side-icon(@click="toggle" v-if="loggedIn")
+  v-app
+    v-app-bar(class="shrink" color="primary" dark)
+      v-app-bar-nav-icon(@click="toggle" v-if="loggedIn")
       v-toolbar-title(class="headline text-uppercase")
         span Expense
         span(class="font-weight-light") Tracker
+      v-spacer
+      v-btn(text icon @click="logoutUser" v-if='loggedIn')
+        v-icon logout
     NavDrawer
     v-content
       router-view
@@ -19,12 +22,19 @@ export default {
   components: { NavDrawer },
   methods: {
     ...mapMutations('navDrawer', ['open', 'close']),
-    toggle: function () {
+    ...mapMutations('account', ['logout']),
+
+    toggle() {
       if (this.isOpen) {
         this.close();
       } else {
         this.open();
       }
+    },
+
+    logoutUser() {
+      this.logout();
+      this.$router.push({name: 'login'})
     }
   },
   computed: {

@@ -10,11 +10,15 @@ const mutations = {
   setUserId: (context, userId) => {
     context.userId = userId;
   },
+
+  logout: (context) => {
+    context.userId = '';
+  }
 };
 
 export default {
   namespaced: true,
   state: defaultState,
-  getters: getters,
-  mutations: mutations,
+  getters,
+  mutations,
 }
