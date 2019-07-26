@@ -6,7 +6,7 @@
         span Expense
         span(class="font-weight-light") Tracker
       v-spacer
-      v-btn(text icon)
+      v-btn(text icon @click="logoutUser" v-if='loggedIn')
         v-icon logout
     NavDrawer
     v-content
@@ -22,12 +22,19 @@ export default {
   components: { NavDrawer },
   methods: {
     ...mapMutations('navDrawer', ['open', 'close']),
-    toggle: function () {
+    ...mapMutations('account', ['logout']),
+
+    toggle() {
       if (this.isOpen) {
         this.close();
       } else {
         this.open();
       }
+    },
+
+    logoutUser() {
+      this.logout();
+      this.$router.push({name: 'login'})
     }
   },
   computed: {
