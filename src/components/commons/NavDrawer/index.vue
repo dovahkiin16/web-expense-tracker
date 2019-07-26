@@ -1,11 +1,11 @@
 <template lang="pug">
-  v-navigation-drawer(app dark absolute temporary v-model="isNavDrawerOpen")
+  v-navigation-drawer(absolute temporary v-model="isNavDrawerOpen")
     v-list
-      v-list-tile(@click="toTransactions")
-        v-list-tile-action
+      v-list-item(@click="toTransactions")
+        v-list-item-action
           v-icon assessment
-        v-list-tile-content
-          v-list-tile-title List of Transactions
+        v-list-item-content
+          v-list-item-title List of Transactions
 </template>
 
 <script>

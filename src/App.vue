@@ -1,7 +1,7 @@
 <template lang="pug">
-  v-app(dark)
-    v-toolbar(app color="primary" dark)
-      v-toolbar-side-icon(@click="toggle" v-if="loggedIn")
+  v-app
+    v-app-bar(class="shrink" color="primary" dark)
+      v-app-bar-nav-icon(@click="toggle" v-if="loggedIn")
       v-toolbar-title(class="headline text-uppercase")
         span Expense
         span(class="font-weight-light") Tracker
