@@ -9,18 +9,18 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex';
+import { mapGetters, mapMutations } from "vuex";
 import { routeNames } from "../../../router/routeNames";
 
 export default {
   name: "NavDrawer",
   computed: {
-    ...mapGetters('navDrawer', ['isOpen']),
+    ...mapGetters("navDrawer", ["isOpen"]),
     isNavDrawerOpen: {
-      get: function () {
+      get: function() {
         return this.isOpen;
       },
-      set: function (value) {
+      set: function(value) {
         if (value) {
           this.open();
         } else {
@@ -30,10 +30,10 @@ export default {
     }
   },
   methods: {
-    ...mapMutations('navDrawer', ['open', 'close']),
-    toTransactions: function () {
+    ...mapMutations("navDrawer", ["open", "close"]),
+    toTransactions: function() {
       this.$router.push(routeNames.transactions);
     }
   }
-}
+};
 </script>
