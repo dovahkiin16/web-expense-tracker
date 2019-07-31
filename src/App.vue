@@ -15,14 +15,14 @@
 
 <script>
 import NavDrawer from "./components/commons/NavDrawer/index";
-import { mapGetters, mapMutations } from "vuex";
+import { mapGetters, mapMutations, mapActions, } from "vuex";
 
 export default {
   name: 'App',
   components: { NavDrawer },
   methods: {
     ...mapMutations('navDrawer', ['open', 'close']),
-    ...mapMutations('account', ['logout']),
+    ...mapActions('account', ['logout']),
 
     toggle() {
       if (this.isOpen) {
@@ -32,8 +32,8 @@ export default {
       }
     },
 
-    logoutUser() {
-      this.logout();
+    async logoutUser() {
+      await this.logout();
       this.$router.push({name: 'login'})
     }
   },
