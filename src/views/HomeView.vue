@@ -2,7 +2,7 @@
   v-container(:class="{'pa-0': isDeviceSmall}")
     v-layout(row wrap)
       v-flex(xs12 sm6 md4 lg3 )
-        BalanceCard
+        balance-card
 </template>
 
 <script>
