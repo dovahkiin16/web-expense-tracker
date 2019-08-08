@@ -22,10 +22,10 @@ export default {
   computed: {
     ...mapGetters("navDrawer", ["isOpen"]),
     isNavDrawerOpen: {
-      get: function() {
+      get() {
         return this.isOpen;
       },
-      set: function(value) {
+      set(value) {
         if (value) {
           this.open();
         } else {
@@ -36,7 +36,7 @@ export default {
   },
   methods: {
     ...mapMutations("navDrawer", ["open", "close"]),
-    toTransactions: function() {
+    toTransactions() {
       this.$router.push(routeNames.transactions);
     },
     toHome() {
