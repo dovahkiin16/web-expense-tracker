@@ -1,6 +1,11 @@
 <template lang="pug">
   v-navigation-drawer(absolute temporary v-model="isNavDrawerOpen")
     v-list
+      v-list-item(@click="toHome")
+        v-list-item-action
+          v-icon home
+        v-list-item-content
+          v-list-item-title Home
       v-list-item(@click="toTransactions")
         v-list-item-action
           v-icon assessment
@@ -17,10 +22,10 @@ export default {
   computed: {
     ...mapGetters("navDrawer", ["isOpen"]),
     isNavDrawerOpen: {
-      get: function() {
+      get() {
         return this.isOpen;
       },
-      set: function(value) {
+      set(value) {
         if (value) {
           this.open();
         } else {
@@ -31,8 +36,11 @@ export default {
   },
   methods: {
     ...mapMutations("navDrawer", ["open", "close"]),
-    toTransactions: function() {
+    toTransactions() {
       this.$router.push(routeNames.transactions);
+    },
+    toHome() {
+      this.$router.push(routeNames.home);
     }
   }
 };
