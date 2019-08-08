@@ -1,6 +1,11 @@
 <template lang="pug">
   v-navigation-drawer(absolute temporary v-model="isNavDrawerOpen")
     v-list
+      v-list-item(@click="toHome")
+        v-list-item-action
+          v-icon home
+        v-list-item-content
+          v-list-item-title Home
       v-list-item(@click="toTransactions")
         v-list-item-action
           v-icon assessment
@@ -33,6 +38,9 @@ export default {
     ...mapMutations("navDrawer", ["open", "close"]),
     toTransactions: function() {
       this.$router.push(routeNames.transactions);
+    },
+    toHome() {
+      this.$router.push(routeNames.home);
     }
   }
 };

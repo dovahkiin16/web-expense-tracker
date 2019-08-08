@@ -17,7 +17,13 @@ export default new Router({
       ...routeNames.transactions,
       path: '/transactions',
       beforeEnter: requireAuth,
-      component: () => import(/* webpackChunkName: "transactions" */ '../views/TransactionView')
-    }
+      component: () => import(/* webpackChunkName: "basic-home" */ '../views/TransactionView')
+    },
+    {
+      ...routeNames.home,
+      path: '/home',
+      beforeEnter: requireAuth,
+      component: () => import(/* webpackChunkName: "basic-home" */ '../views/HomeView')
+    },
   ]
 })
