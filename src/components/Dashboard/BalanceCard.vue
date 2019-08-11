@@ -2,7 +2,7 @@
   v-card
     v-card-title Balance in PHP
     v-divider
-    v-card-text.display-3.text-xs-center {{ balance | adddCommas }}
+    v-card-text.display-3.text-xs-center {{ balance | addCommas }}
 </template>
 
 <script>
