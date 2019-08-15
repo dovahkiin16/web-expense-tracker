@@ -54,7 +54,7 @@ export default {
         return;
       }
 
-      const categ_upper = category.toUpperCase();
+      const categ_upper = category.toUpperCase().replace(' ', '_');
       const value = categories[categ_upper].type;
       this.setTransactionFormField({field: 'type', value: value});
     }
