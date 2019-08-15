@@ -25,55 +25,63 @@ import { categories_array, categories } from "../../config/constants";
 
 export default {
   name: "TransactionFormCard",
-  data: function () {
+  data() {
     return {
       categories: categories_array,
     }
   },
+
   methods: {
     ...mapMutations('transaction', ['setTransactionFormField']),
+
     required: fieldRequired,
-    add: function () {
+
+    add() {
       if (this.$refs.form.validate()) {
         this.$emit('add');
         this.$refs.form.reset();
       }
     },
-    getItemText: function (value) {
-      return `${value.name} (${value.type})`
+
+    getItemText(value) {
+      return `${value.name} (${value.type})`;
     },
-    setType: function (category) {
+
+    setType(category) {
       if (category === '' || category === undefined) {
         this.setTransactionFormField({field: 'type', value: ''});
+
         return;
       }
-      const categ_upper = category.toUpperCase();
+
+      const categ_upper = category.toUpperCase().replace(' ', '_');
       const value = categories[categ_upper].type;
       this.setTransactionFormField({field: 'type', value: value});
     }
   },
+
   computed: {
     ...mapGetters('transaction', ['transactionForm']),
+
     amount: {
-      get: function () {
+      get() {
         return this.transactionForm.amount;
       },
-      set: function (value) {
+
+      set(value) {
         this.setTransactionFormField({field: 'amount', value: value});
       }
     },
+
     category: {
-      get: function () {
+      get() {
         return this.transactionForm.category;
       },
-      set: function (category) {
+      
+      set(category) {
         this.setTransactionFormField({field: 'category', value: category});
       }
     },
   }
 }
 </script>
-
-<style scoped>
-
-</style>
