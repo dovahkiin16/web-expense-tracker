@@ -1,19 +1,30 @@
 <template lang="pug">
-  v-card
-    v-card-title Balance in PHP
-    v-divider
-    v-card-text.display-3.text-xs-center {{ balance | addCommas }}
+  DashboardCard(
+    title="Balance"
+    :value="balanceWithComma"
+  )
 </template>
 
 <script>
 import { mapGetters } from "vuex";
+import DashboardCard from './DashboardCard';
 
 export default {
   name: "BalanceCard",
-  computed: {
-    ...mapGetters("transaction", ["balance"])
+
+  components: {
+    DashboardCard,
   },
-  filters: {
+
+  computed: {
+    ...mapGetters("transaction", ["balance"]),
+    
+    balanceWithComma() {
+      return this.addCommas(this.balance);
+    }
+  },
+
+  methods: {
     addCommas(value) {
       const valueStr = value.toString();
       const remainder = valueStr.length % 3;
