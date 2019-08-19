@@ -1,3 +1,4 @@
+import { constants } from '../../config/constants';
 import { db } from "../../main";
 import { formatDate } from "../../utils/index";
 import firebase from 'firebase/app';
@@ -13,7 +14,9 @@ const defaultState = {
 
 const getters = {
   transactions: state => state.transactions,
+
   transactionForm: state => state.transactionForm,
+
   balance: state => {
     return state.transactions.reduce((acc, val) => {
       if (val.type === 'credit') {
@@ -22,7 +25,15 @@ const getters = {
 
       return acc + parseInt(val.amount);
     }, 0);
-  }
+  },
+
+  foodExpenses: state => {
+    return state.transactions.reduce((acc, val) => {
+      if (val.category === constants.category.FOOD.name) {
+        return acc + val.amount;
+      }
+    }, 0);
+  },
 };
 
 const actions = {
