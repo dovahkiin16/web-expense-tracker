@@ -1,7 +1,7 @@
 <template lang="pug">
   DashboardCard(
-    title="Balance"
-    :value="balanceWithComma"
+    title="Food Expenses"
+    :value="foodExpensesWithComma"
   )
 </template>
 
@@ -11,17 +11,17 @@ import DashboardCard from "./DashboardCard";
 import { addCommas } from "../../utils";
 
 export default {
-  name: "BalanceCard",
+  name: "FoodExpensesCard",
 
   components: {
     DashboardCard
   },
 
   computed: {
-    ...mapGetters("transaction", ["balance"]),
+    ...mapGetters("transaction", ["foodExpenses"]),
 
-    balanceWithComma() {
-      return addCommas(this.balance);
+    foodExpensesWithComma() {
+      return addCommas(this.foodExpenses);
     }
   }
 };
