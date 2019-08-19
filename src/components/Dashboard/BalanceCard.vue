@@ -7,44 +7,21 @@
 
 <script>
 import { mapGetters } from "vuex";
-import DashboardCard from './DashboardCard';
+import DashboardCard from "./DashboardCard";
+import { addCommas } from "../../utils";
 
 export default {
   name: "BalanceCard",
 
   components: {
-    DashboardCard,
+    DashboardCard
   },
 
   computed: {
     ...mapGetters("transaction", ["balance"]),
-    
+
     balanceWithComma() {
-      return this.addCommas(this.balance);
-    }
-  },
-
-  methods: {
-    addCommas(value) {
-      const valueStr = value.toString();
-      const remainder = valueStr.length % 3;
-      let result = "";
-
-      if (value === 0) {
-        return value;
-      }
-
-      if (remainder < 3) {
-        result += valueStr.slice(0, remainder);
-      }
-
-      for (let i = remainder; i < valueStr.length; i += 3) {
-        let toConcat = valueStr.slice(i, i + 3);
-
-        result = result + "," + toConcat;
-      }
-
-      return result;
+      return addCommas(this.balance);
     }
   }
 };
