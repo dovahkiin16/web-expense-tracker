@@ -1,4 +1,4 @@
-import { constants } from '../../config/constants';
+import { categories } from '../../config/constants';
 import { db } from "../../main";
 import { formatDate } from "../../utils/index";
 import firebase from 'firebase/app';
@@ -29,9 +29,11 @@ const getters = {
 
   foodExpenses: state => {
     return state.transactions.reduce((acc, val) => {
-      if (val.category === constants.category.FOOD.name) {
-        return acc + val.amount;
+      if (val.category === categories.FOOD.name) {
+        return acc + parseInt(val.amount);
       }
+
+      return acc;
     }, 0);
   },
 };

@@ -4,12 +4,12 @@
       v-flex(xs12 sm6 md4 lg3)
         balance-card
       v-flex(xs12 sm6 md4 lg3)
-        food-expense-card
+        food-expenses-card
 </template>
 
 <script>
 import BalanceCard from "../components/Dashboard/BalanceCard";
-import FoodExpensesCard from "../components/Dashboard/DashboardCard";
+import FoodExpensesCard from "../components/Dashboard/FoodExpensesCard";
 
 export default {
   name: "HomeView",
