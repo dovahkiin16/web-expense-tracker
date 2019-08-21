@@ -12,6 +12,7 @@ Vue.config.productionTip = false;
 firebase.initializeApp(config);
 
 export const db = firebase.firestore();
+db.enablePersistence();
 
 new Vue({
   router,
