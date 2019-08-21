@@ -3,8 +3,8 @@
     "short_name": "Exepnse Tracker",
     "start_url": "index.html",
     "display": "standalone",
-    "theme_color": "#1976D2",
-    "background_color": "#1976D2",
+    "theme_color": "#2196f3",
+    "background_color": "#2196f3",
     "icons": [
         {
             "src": "expensive.png",
