@@ -1,30 +1,34 @@
 <template lang="pug">
   v-navigation-drawer(absolute temporary v-model="isNavDrawerOpen")
     v-list
-      v-list-item(@click="toHome")
+      v-list-item(v-for="(route, index) in routes" @click="to(route.routeName)" :key="index")
         v-list-item-action
-          v-icon home
+          v-icon {{ route.icon }}
         v-list-item-content
-          v-list-item-title Home
-      v-list-item(@click="toTransactions")
-        v-list-item-action
-          v-icon assessment
-        v-list-item-content
-          v-list-item-title List of Transactions
+          v-list-item-title {{ route.title }}
 </template>
 
 <script>
 import { mapGetters, mapMutations } from "vuex";
-import { routeNames } from "../../../router/routeNames";
+import { navRoutes } from "../../../router/sideNavRoutes";
 
 export default {
   name: "NavDrawer",
+
+  data() {
+    return {
+      routes: navRoutes
+    }
+  },
+
   computed: {
     ...mapGetters("navDrawer", ["isOpen"]),
+    
     isNavDrawerOpen: {
       get() {
         return this.isOpen;
       },
+
       set(value) {
         if (value) {
           this.open();
@@ -34,14 +38,13 @@ export default {
       }
     }
   },
+
   methods: {
     ...mapMutations("navDrawer", ["open", "close"]),
-    toTransactions() {
-      this.$router.push(routeNames.transactions);
-    },
-    toHome() {
-      this.$router.push(routeNames.home);
+
+    to(route) {
+      this.$router.push(route);
     }
-  }
+  },
 };
 </script>
