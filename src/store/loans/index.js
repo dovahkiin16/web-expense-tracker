@@ -47,7 +47,7 @@ const actions = {
       };
 
       commit('transaction/setTransactionFormField', detail, {root: true});
-    })
+    });
 
     // addTransaction and clear form
     await dispatch('transaction/addTransaction', null, {root: true});
@@ -70,6 +70,34 @@ const actions = {
 
     dispatch('fetchLoaners');
   },
+
+  async payLoan({state, commit, dispatch, rootGetters}) {
+    const transaction = {
+      amount: amount,
+      category: categories.LOAN_PAYMENT.name,
+      type: categories.LOAN_PAYMENT
+    };
+
+    // set transaction form fields
+    Object.keys(transaction).forEach(key => {
+      const detail = {
+        field: key,
+        value: transaction[key]
+      };
+
+      commit('transaction/setTransactionFormField', detail, {root: true});
+    });
+
+    // addTransaction and clear form
+    await dispatch('transaction/addTransaction', null, {root: true});
+    commit('transaction/clearTransactionForm', null, {root: true});
+
+    const loansCollection = await db.collection('user')
+      .doc(rootGetters['account/userId'])
+      .collection('loaners');
+    
+    const loanersCollection = await loansCollection.where('name', '==', loan.name).get();
+  }
 };
 
 const mutations = {
