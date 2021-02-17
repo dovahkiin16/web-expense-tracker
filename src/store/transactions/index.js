@@ -97,6 +97,10 @@ const mutations = {
   setTransactionFormField(context, detail) {
     context.transactionForm[detail.field] = detail.value;
   },
+
+  clearTransactionForm(context) {
+    context.transactionForm = defaultState;
+  }
 };
 
 export default {

@@ -13,17 +13,26 @@ export default new Router({
       beforeEnter: requireNoUser,
       component: () => import(/* webpackChunkName: "login" */ '../views/LoginView')
     },
+
     {
       ...routeNames.transactions,
       path: '/transactions',
       beforeEnter: requireAuth,
       component: () => import(/* webpackChunkName: "basic-home" */ '../views/TransactionView')
     },
+
     {
       ...routeNames.home,
       path: '/home',
       beforeEnter: requireAuth,
       component: () => import(/* webpackChunkName: "basic-home" */ '../views/HomeView')
+    },
+
+    {
+      ...routeNames.loans,
+      path: '/loans',
+      beforeEnter: requireAuth,
+      component: () => import(/* webpackChunkName: "loans" */ '../views/LoansView')
     },
   ]
 })
